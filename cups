@@ -1,0 +1,53 @@
+Install
+=======
+
+# Workforce driver
+pacman -S epson-inkjet-printer-escpr
+
+# List devices
+lpinfo -v
+
+# List drivers
+lpinfo -m
+
+# Add printer
+lpadmin -p workforce -E -v lpd://192.168.1.201:515/PASSTHRU -P /usr/share/ppd/epson-inkjet-printer-escpr/Epson-WorkForce_845-epson-escpr-en.ppd
+
+# Set default printer
+lpoptions -d workforce
+
+# Check status
+lpstat -s
+lpstat -p workforce
+
+
+Operation
+=========
+
+# Print file
+lpr file
+lpr -# 5 file  # print 5 times
+
+# Check printing queue
+lpq
+lpq -a  # on all printers
+
+# Clear printing queue
+lprm    # last entry
+lprm -  # all entries
+
+
+Maintenance
+===========
+
+# Activate printer
+cupsenable workforce
+
+# Reject incoming queue entries
+cupsreject workforce
+
+# Deactivate printer
+cupsdisable workforce
+
+# Remove printer
+lpadmin -x workforce
