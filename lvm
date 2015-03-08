@@ -1,0 +1,35 @@
+add logical volume
+------------------
+
+lvcreate -L 8G -n NAME VOLUME_GROUP
+mkfs.ext3 /dev/VOLUME_GROUP/NAME
+# then fstab
+# then mkdir /mnt/NAME
+
+add hardrive
+------------
+
+pvcreate /dev/sdxX
+vgextend vg00 /dev/sdxX
+
+replace harddrive
+-----------------
+
+# if no more place, add first a harddrive
+pvmove /dev/sdxX
+
+# abort with:
+pvmove --abort
+
+# if interrupted (i.e. shutdown), you can simply restart the operation
+
+extend logical volume
+---------------------
+
+relative
+    lvextend -L+1G /dev/mapper/$Filesystem
+absolute
+    lvextend -L1G /dev/mapper/$Filesystem
+
+then:
+    resize2fs /dev/mapper/$Filesystem
