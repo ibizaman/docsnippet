@@ -1,0 +1,11 @@
+sudo npm install -g shout
+
+sudo npm install -g npm
+sudo npm cache clear
+npm cache clear
+
+sudo su - shout-irc
+shout config
+shout add timi
+shout edit timi
+shout reset timi # resets pw and verifies syntax
