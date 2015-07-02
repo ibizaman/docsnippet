@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -rf /etc/openldap/slapd.d/*
+slaptest -f /etc/openldap/slapd.conf -F /etc/openldap/slapd.d/
+chown -R ldap: /etc/openldap/slapd.d
+systemctl stop slapd
+slapindex
+chown ldap:ldap /var/lib/openldap/openldap-data/*
+systemctl start slapd

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+    echo "please give the root complete cn"
+    echo "  example: cn=root,dc=my,dc=domain,dc=com"
+    exit 1
+fi
+if [ -z $2 ] || ! [ -f $2 ]; then
+    echo "please give a .ldif file"
+    exit 1
+fi
+
+ldapadd -D "$1" -W -f $2

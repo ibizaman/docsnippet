@@ -1,0 +1,17 @@
+dn: uid=PSEUDO,ou=People,dc=my,dc=domain,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: PSEUDO
+cn: NAME FIRSTNAME
+sn: FIRSTNAME
+givenName: NAME
+mail: NAME.FIRSTNAME@MAIL.COM
+userPassword: 
+loginShell: /bin/bash
+uidNumber: 100XX
+gidNumber: 100
+homeDirectory: /home/PSEUDO
