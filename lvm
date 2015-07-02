@@ -1,3 +1,13 @@
+add physical volume
+-------------------
+
+pvcreate /dev/sdX1
+
+add volume group
+----------------
+
+vgcreate mirror /dev/sdX1 [/dev/sdY1]
+
 add logical volume
 ------------------
 
