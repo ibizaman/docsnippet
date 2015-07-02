@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -S --needed base-devel
+sudo pacman -S --needed base-devel
 
 cd_to="$1"
 [ -z "$cd_to" ] && cd_to=.
