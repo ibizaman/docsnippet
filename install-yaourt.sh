@@ -2,21 +2,18 @@
 
 sudo pacman -S --needed base-devel
 
-cd_to="$1"
-[ -z "$cd_to" ] && cd_to=.
+set -ex
 
-set -e
+TEMP=$(mktemp -d)
+cd "$TEMP"
 
-cd $cd_to
+curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yaourt
+makepkg PKGBUILD
+sudo pacman -U package-query*.tar.xz --noconfirm
 
-curl -O https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
-tar zxvf package-query.tar.gz
-cd package-query
-makepkg -si
-cd ..
 
-curl -O https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
-tar zxvf yaourt.tar.gz
-cd yaourt
-makepkg -si
-cd ..
+curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yaourt
+makepkg PKGBUILD
+sudo pacman -U yaourt*.tar.xz --noconfirm
+
+rm -r "$TEMP"
